@@ -1,0 +1,220 @@
+/*
+ Theme Name:   My Custom Theme
+ Author:       Noel
+ Version:      1.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  my-custom-theme
+ */
+
+:root {
+  --white: #fff;
+  --gray: #6c757d;
+  --primary: #d8eae2;
+  --primary-alt: #f9fffa;
+
+  --secondary: #abd1c1;
+  --secondary-dark: #5f8575;
+  --success: #198754;
+  --info: #e8c5be;
+  --info-secondary: #bda09b;
+  --info-dark: #855a52;
+  --warning: #ffc107;
+  --danger: #ae1e2d;
+  --light: #fafff6;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --body-font-family: "Quicksand", sans-serif;
+  --headings-font-family: "Voces", cursive;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+body {
+  height: auto;
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--dark);
+  background-color: var(--primary);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--headings-font-family);
+  text-transform: uppercase;
+}
+header {
+  background-color: var(--secondary);
+}
+
+.main-wrapper {
+  position: relative;
+  min-height: 100vh;
+}
+
+.page-container {
+  padding-bottom: 80px;
+  margin-bottom: 0; /* Footer height */
+}
+
+.navbar {
+  background-color: var(--secondary);
+}
+.navbar-brand {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--dark);
+}
+.nav-link {
+  color: var(--dark);
+  text-decoration: none;
+}
+.nav-link:hover {
+  color: var(--info-dark);
+}
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.1rem;
+}
+.heading {
+  color: black;
+  height: 40px;
+}
+.fp-header {
+  background-color: var(--gray);
+  color: var(--light);
+}
+.blogpost-row {
+  min-height: 300px;
+}
+.card-text {
+  font-size: 14px;
+}
+.card-img-overlay {
+  padding: 0;
+}
+.fp-blog-img {
+  object-fit: cover;
+}
+
+.fp-blog-card {
+  background: var(--light);
+}
+.fp-lang-container {
+  background: var(--info);
+}
+.languages {
+  font-size: 4rem;
+}
+.lang-icon {
+  background-color: var(--info-secondary);
+}
+.lang-icon h5 {
+  font-size: 0.75rem;
+  font-family: var(--body-font-family);
+  text-transform: uppercase;
+}
+.fp-projects-container {
+  background-color: var(--light);
+  color: var(--dark);
+}
+.home-blogpost {
+  background-color: var(--light);
+}
+.post-btn {
+  background-color: var(--info);
+}
+.post-nav-link,
+.post-nav-link:hover {
+  color: var(--dark);
+  text-decoration: none;
+}
+.pagination .page-link {
+  color: var(--dark);
+  border: 1px solid var(--info);
+  background-color: var(--info);
+}
+.page-link:hover,
+.post-btn:hover,
+.scrollToTopBtn:hover {
+  color: var(--dark);
+  background-color: var(--info-secondary);
+  border-color: var(--info-secondary);
+}
+.page-item.active .page-link {
+  background-color: var(--info-dark);
+  border-color: var(--info-dark);
+  color: var(--light);
+}
+.footer {
+  display: flex;
+  bottom: 0;
+  width: 100%;
+  height: 80px; /* Set the fixed height of the footer here */
+  background-color: var(--secondary);
+}
+.footer-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.footer-menu {
+  margin: 0;
+  list-style-type: none;
+}
+
+.scrollToTopBtn {
+  background-color: var(--info-dark);
+  border: 1px solid rgba(65, 64, 64, 0.158);
+  background-clip: padding-box;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 40px;
+  width: 48px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.5s ease;
+}
+.scrollToTopBtn:focus {
+  box-shadow: 0 0 0 0.25rem var(--info-dark);
+}
+.showBtn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media only screen and (min-width: 470px) {
+  .lang-icon h5 {
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .animated-title,
+  .animated-text {
+    text-align: right;
+  }
+}
