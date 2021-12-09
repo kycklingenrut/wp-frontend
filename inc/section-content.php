@@ -27,7 +27,7 @@ if (have_posts()):
                 </div>
             </article>
             <div class=" d-flex justify-content-center">
-                <button class="btn post-btn" id="go-back">Return to Blog</button>
+                <button class="btn post-btn" id="go-back"><i class="fas fa-angle-double-left"></i></button>
             </div>
             <?php endwhile;else:endif;?>
         </div>

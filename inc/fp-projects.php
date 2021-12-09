@@ -2,7 +2,6 @@
 $blogpost_query = new WP_Query(array('posts_per_page' => 3, 'category_name' => 'projects'));
 ?>
 
-
 <div class="container px-4 py-5 mb-1">
     <h2 class="pb-2 border-bottom">Our Projects</h2>
 

@@ -255,6 +255,24 @@ function bootstrap_pagination(\WP_Query$wp_query = null, $echo = true, $params =
     return null;
 }
 
+// Register Sidebars
+function custom_sidebar()
+{
+
+    $args = array(
+        'id' => 'footer-sidebar',
+        'name' => __('Footer Sidebar', 'text_domain'),
+        'description' => __('Appears in the footer section of the site.', 'text_domain'),
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+    );
+    register_sidebar($args);
+
+}
+add_action('widgets_init', 'custom_sidebar');
+
 // change length of the_excerpt()
 // function myowntheme_custom_excerpt_length($length)
 // {
