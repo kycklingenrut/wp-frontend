@@ -1,5 +1,31 @@
 // calls custom functions after page- and content-load
 window.onload = function () {
+  let btn = document.querySelector(".post-btn")
+  let single_btn = document.getElementById("go-back")
+
+  function checkAllBtns() {
+    if (btn != null) {
+      btn.addEventListener("click", () => {
+        btn.blur()
+      })
+    } else {
+      return
+    }
+  }
+
+  function checkSingleBtn() {
+    if (single_btn != null) {
+      single_btn.addEventListener("click", () => {
+        history.back()
+      })
+    } else {
+      return
+    }
+  }
+
+  checkAllBtns()
+  checkSingleBtn()
+
   // gets window size of client and runs custom scripts
   // depending on client-width
   function getWindowSize() {
@@ -57,6 +83,7 @@ function scrollToTop() {
   })
   scrollToTopBtn.blur()
 }
+
 scrollToTopBtn.addEventListener("click", scrollToTop)
 document.addEventListener("scroll", handleScroll)
 

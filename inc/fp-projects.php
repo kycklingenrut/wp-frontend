@@ -37,15 +37,3 @@ else:endif;
         </div>
     </div>
 </div>
-
-
-
-
-
-<!-- <div class="card shadow-sm fp-projects-container mx-3 d-flex flex-column">
-                <img src="" class="card-img-top" alt="...">
-                <div class="card-body d-flex align-items-center justify-content-center">
-                    <h5 class="card-title my-auto"></h5>
-                    >
-                </div>
-            </div> -->

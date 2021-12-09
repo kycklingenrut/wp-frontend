@@ -1,12 +1,12 @@
 <?php
-// dynamically add title
+// Dynamically add Title for Pages
 function myowntheme_theme_support()
 {
     add_theme_support('title-tag');
 }
 add_action('after_setup_theme', 'myowntheme_theme_support');
 
-// Custom Excerpt function for Advanced Custom Fields
+// Custom Excerpt for Frontpage (Strip by chars)
 function custom_field_excerpt()
 {
     global $post;
@@ -30,6 +30,7 @@ function custom_field_excerpt()
     return apply_filters('the_excerpt', $text);
 }
 
+// Custom excerpt for Blog-Page (Strip by words, don't delete formatting)
 function content_excerpt($excerpt_length = 5, $id = false, $echo = true)
 {
     global $post;
@@ -57,12 +58,7 @@ function content_excerpt($excerpt_length = 5, $id = false, $echo = true)
 
 }
 
-function get_content_excerpt($excerpt_length = 5, $id = false, $echo = false)
-{
-    return content_excerpt($excerpt_length, $id, $echo);
-}
-
-// add menu-options
+// Add Menu-options in WP-admin
 function myowntheme_menus()
 {
     register_nav_menus(
@@ -74,7 +70,7 @@ function myowntheme_menus()
 }
 add_action('init', 'myowntheme_menus');
 
-// add stylesheets
+// Add stylesheets
 function myowntheme_register_styles(): void
 {
     $mytheme_version = wp_get_theme()->get('Version');
@@ -91,7 +87,7 @@ function myowntheme_register_styles(): void
 }
 add_action('wp_enqueue_scripts', 'myowntheme_register_styles');
 
-// add javascript
+// Add javascript
 function myowntheme_register_scripts(): void
 {
 
@@ -110,7 +106,7 @@ function myowntheme_register_scripts(): void
 }
 add_action('wp_enqueue_scripts', 'myowntheme_register_scripts');
 
-// hide default title in wp-admin
+// Hide default title in wp-admin
 add_action('admin_head', 'hide_wp_title_input');
 function hide_wp_title_input()
 {
@@ -139,7 +135,7 @@ if ($screen->id != 'post') {
 <?php
 }
 
-// function for displaying and using ACF as default on posts
+// Function for displaying and using ACF as default on posts in WP-admin
 add_action('acf/save_post', 'upd_cust_post_title', 20); // fires after ACF
 function upd_cust_post_title($post_id)
 {
@@ -160,7 +156,6 @@ function upd_cust_post_title($post_id)
 
 // add default image setting to ACF image fields
 // let's you select a defualt image
-// this is simply taking advantage of a field setting that already exists
 add_action('acf/render_field_settings/type=image', 'add_default_value_to_image_field');
 function add_default_value_to_image_field($field)
 {
@@ -181,9 +176,7 @@ function reset_default_image($value, $post_id, $field)
     return $value;
 }
 
-/**
- * Register Custom Navigation Walker for Bootstrap fucnctionality
- */
+// Register Custom Navigation Walker for Bootstrap-header Functionality
 function register_navwalker()
 {
     require_once get_template_directory() . '/classes/class-wp-bootstrap-navwalker.php';
