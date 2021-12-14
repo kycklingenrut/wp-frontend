@@ -1,4 +1,4 @@
-<div class="p-5 mb-4 fp-header rounded-3">
+<div class="p-5 mb-4 fp-header">
     <div class="container-fluid py-5 animated-div">
         <div class="animated-text-container d-flex flex-column align-items-end">
             <h1 class="display-5 fw-bold animated-title">Real life experiences, with inclusive implementation</h1>

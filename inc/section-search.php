@@ -6,7 +6,6 @@
                 <button class="btn post-btn" id="go-back"><i class="fas fa-angle-double-left"></i> Go Back</button>
             </div>
             <?php
-
 if (have_posts()):
     while (have_posts()):
         the_post();
@@ -15,24 +14,17 @@ if (have_posts()):
             $text = get_field('newpost-text');
         }
 
-        if (get_field('newpost-image') != null) {
-            $image = get_field('newpost-image');
-            $image_id = $image['ID'];
-            $image_alt = $image['alt'];
-        } else {
-            $image_id = "";
-            $image_alt = "";
-        }
         ?>
             <article class="my-5 home-blogpost rounded">
                 <div class="card-body d-flex flex-column">
-                    <img class="rounded" <?php acf_responsive_image($image_id, 'full', '640px');?>
-                        alt="<?php echo $image_alt; ?>" />
                     <div class="single-title border-bottom d-flex my-2 justify-content-center">
                         <h3 class="align-self-center my-2 fw-bold"><?php the_title();?></h3>
                     </div>
-                    <div class="card-text"><?php echo $text; ?></div>
-
+                    <div class="card-text"><?php echo content_excerpt(500); ?></div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn post-btn"><a href="<?php the_permalink();?>" class="post-nav-link">To
+                                Post</a></button>
+                    </div>
                 </div>
             </article>
 

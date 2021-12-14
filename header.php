@@ -50,12 +50,16 @@ wp_nav_menu(
 
             <div class="container">
                 <?php
-$our_title = get_the_title(get_option('page_for_posts', true));
+// $our_title = get_the_title(get_option('page_for_posts', true));
+$projects_title = get_field('projects_title');
+
+$post_id = 9;
+$blogpage_title = get_field("blogpage_title", $post_id);
 
 if (is_page() && !is_front_page()) {?>
-                <h1 class="mb-5"><?php the_title();?></h1><?php
+                <h1 class="mb-5"><?php echo $projects_title; ?></h1><?php
 } else if (is_home()) {?>
-                <h1 class="mb-5"><?php echo $our_title; ?></h1><?php
+                <h1 class="mb-5"><?php echo $blogpage_title; ?></h1><?php
 }
 ?>
             </div>

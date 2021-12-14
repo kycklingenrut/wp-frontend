@@ -111,27 +111,20 @@ add_action('admin_head', 'hide_wp_title_input');
 function hide_wp_title_input()
 {
     $screen = get_current_screen();
+    // var_dump($screen);
+    if ($screen->id === 'acf-field-group') {
+        return;
+    }
+    if ($screen->id === 'edit-page') {
+        return;
+    }
+    ?>
+<style type="text/css">
+#titlediv {
+    display: none;
+}
+</style>
 
-    if ($screen->id === '
-                edit-page') {
-        return;
-    }
-    ?>
-<style type="text/css">
-#titlediv {
-    display: none;
-}
-</style>
-<?php
-if ($screen->id != 'post') {
-        return;
-    }
-    ?>
-<style type="text/css">
-#titlediv {
-    display: none;
-}
-</style>
 <?php
 }
 
@@ -204,6 +197,35 @@ function prefix_bs5_dropdown_data_attribute($atts, $item, $args)
     return $atts;
 }
 
+// adds custom image-sizes
+function add_image_sizes()
+{
+
+    add_image_size('fp-projects', 450, 300, true);
+    // add_image_size( 'header-medium', 1024, 576, true );
+    // add_image_size( 'header-small', 640, 360, true );
+}
+add_action('after_setup_theme', 'add_image_sizes');
+
+// acf img srcset
+function acf_responsive_image($image_id, $image_size, $max_width)
+{
+
+    // check the image ID is not blank
+    if ($image_id != '') {
+
+        // set the default src image size
+        $image_src = wp_get_attachment_image_url($image_id, $image_size);
+
+        // set the srcset with various image sizes
+        $image_srcset = wp_get_attachment_image_srcset($image_id, $image_size);
+
+        // generate the markup for the responsive image
+        echo 'src="' . $image_src . '" srcset="' . $image_srcset . '" sizes="(max-width: ' . $max_width . ') 100vw, ' . $max_width . '"';
+
+    }
+}
+
 // Bootstrap pagination
 function bootstrap_pagination(\WP_Query$wp_query = null, $echo = true, $params = [])
 {
@@ -258,24 +280,46 @@ function bootstrap_pagination(\WP_Query$wp_query = null, $echo = true, $params =
 // Register Sidebars
 function custom_sidebar()
 {
-
-    $args = array(
+    register_sidebar(array(
         'id' => 'footer-sidebar',
         'name' => __('Footer Sidebar', 'text_domain'),
         'description' => __('Appears in the footer section of the site.', 'text_domain'),
         'before_title' => '<h3 class="widget-title">',
         'after_title' => '</h3>',
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget' => '</div>',
+        'after_widget' => '</div>')
     );
-    register_sidebar($args);
+
+    register_sidebar(array(
+        'id' => 'blogpage-sidebar',
+        'name' => __('Blogpage Sidebar', 'text_domain'),
+        'description' => __('Appears in the right section of the site.', 'text_domain'),
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>')
+    );
 
 }
 add_action('widgets_init', 'custom_sidebar');
 
-// change length of the_excerpt()
-// function myowntheme_custom_excerpt_length($length)
-// {
-//     return 20;
-// }
-// add_filter('excerpt_length', 'myowntheme_custom_excerpt_length', 999);
+function my_restrict_access()
+{
+    global $pagenow;
+
+    if (current_user_can('client') && $pagenow == 'post-new.php' && !current_user_can('publish_posts')) {
+        wp_redirect(admin_url() . '/edit.php?post_type=page');
+    }
+
+}
+add_action('admin_init', 'my_restrict_access', 0);
+
+function wpb_move_comment_field_to_bottom($fields)
+{
+    $comment_field = $fields['comment'];
+    unset($fields['comment']);
+    $fields['comment'] = $comment_field;
+    return $fields;
+}
+
+add_filter('comment_form_fields', 'wpb_move_comment_field_to_bottom');

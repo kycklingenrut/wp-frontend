@@ -4,7 +4,7 @@
 $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
 
 $args = array(
-    'posts_per_page' => 3,
+    'posts_per_page' => 4,
     'category_name' => 'blogposts',
     'paged' => $paged,
 );
@@ -23,21 +23,28 @@ if ($blogpost_blog_query->have_posts()):
 
         if (get_field('newpost-image') != null) {
             $image = get_field('newpost-image');
-            $sm_img = $image['sizes']['medium'];
-            $img_alt = $image['alt'];}
+            $image_id = $image['ID'];
+            $image_alt = $image['alt'];
+        } else {
+            $image_id = "";
+            $image_alt = "";
+        }
 
         $blogpost_title = get_field('newpost-title');
-        $blogpost_content = get_field('newpost-text');
         $post_date = get_the_date('l F j, Y');
 
         $text = get_field('newpost-text');
 
         ?>
             <article class="home-blogpost my-2">
+
                 <div class="card-body d-flex flex-column">
-                    <img src="<?php echo $sm_img; ?>" alt="">
+
+                    <img class="my_class" <?php acf_responsive_image($image_id, 'full', '640px');?>
+                        alt="<?php echo $image_alt; ?>" />
+
                     <div class="d-flex justify-content-end">
-                        <small class="my-2 text-muted"><?php echo $post_date; ?></small>
+                        <small class="my-2 px-1 text-muted"><?php echo $post_date; ?></small>
                     </div>
                     <h3 class="card-title"><?php echo $blogpost_title; ?></h3>
                     <div class="card-text card-text-post">
@@ -49,14 +56,30 @@ if ($blogpost_blog_query->have_posts()):
                 </div>
             </article>
             <?php endwhile;?>
+
+
+        </div>
+        <div class="col col-md-4 d-flex flex-column rounded">
             <?php
-    echo bootstrap_pagination($blogpost_blog_query);
+    the_widget('WP_Widget_Recent_Posts');
+    the_widget('WP_Widget_Archives');
+    the_widget('WP_Widget_Categories');
+    the_widget('WP_Widget_Tag_Cloud');
     ?>
 
-            <?php else: ?>
-            <?php _e('Sorry, no posts matched your criteria.');?>
-            <?php endif;
-?>
+            <?php if (is_active_sidebar('blogpage-sidebar')): ?>
+            <?php custom_sidebar('blogpage-sidebar');?>
+
+
         </div>
+        <?php
+    echo bootstrap_pagination($blogpost_blog_query);
+    ?>
+        <?php else: ?>
+        <?php _e('Sorry, no posts matched your criteria.');?>
+        <?php endif;
+?>
+        <?php endif;?>
     </div>
+
 </div>

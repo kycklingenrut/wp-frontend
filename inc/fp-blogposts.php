@@ -16,8 +16,12 @@ if ($blogpost_query->have_posts()):
 
         if (get_field('newpost-image') != null) {
             $image = get_field('newpost-image');
-            $sm_img = $image['sizes']['medium'];
-            $img_alt = $image['alt'];}
+            $image_id = $image['ID'];
+            $image_alt = $image['alt'];
+        } else {
+            $image_id = "";
+            $image_alt = "";
+        }
 
         //Grab the excerpt
         $excerpt = custom_field_excerpt();
@@ -38,11 +42,14 @@ if ($blogpost_query->have_posts()):
                     <small class="mb-1 text-muted"><?php echo $post_date; ?></small>
                     <h5 class=""><?php the_title();?></h5>
                     <p class="card-text mb-auto" id="fp-blog-exc"><?php echo $stripped_exc; ?> </p>
-                    <a href="<?php the_permalink();?>">Continue reading</a>
+                    <button class="btn post-btn" style="max-width: 100px"><a href="<?php the_permalink();?>"
+                            class="post-nav-link">To
+                            Post</a></button>
                 </div>
                 <div class="col px-0 justify-content-end d-none d-lg-flex">
-                    <img width="200" height="250" src="<?php echo $sm_img ?>" alt="<?php echo $img_alt ?>"
-                        class="fp-blog-img"></img>
+
+                    <img width="200" height="250" class="fp-blog-img"
+                        <?php acf_responsive_image($image_id, 'full', '640px');?> alt="<?php echo $img_alt; ?>" />
 
                 </div>
             </div>

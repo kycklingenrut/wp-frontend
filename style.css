@@ -65,6 +65,13 @@ h6 {
 header {
   background-color: var(--secondary);
 }
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+label {
+  padding: 0.25rem, 0, 0.25rem, 0;
+}
 
 .main-wrapper {
   position: relative;
@@ -99,8 +106,11 @@ header {
   height: 40px;
 }
 .fp-header {
-  background-color: var(--gray);
-  color: var(--light);
+  background-image: url("./assets/images/green-bg-2.png");
+  background-size: cover;
+  background-color: var(--info-secondary);
+  color: var(--dark);
+  text-shadow: 1px 1px 1px var(--gray);
 }
 .blogpost-row {
   min-height: 300px;
@@ -111,7 +121,8 @@ header {
 .card-img-overlay {
   padding: 0;
 }
-.fp-blog-img {
+.fp-blog-img,
+.fp-proj-img {
   object-fit: cover;
 }
 
@@ -136,8 +147,28 @@ header {
   background-color: var(--light);
   color: var(--dark);
 }
-.home-blogpost {
+.sec-proj-cont {
   background-color: var(--light);
+}
+.home-blogpost,
+.widget {
+  background-color: var(--light);
+}
+.widget {
+  padding: 1rem;
+}
+.widget_recent_entries li a,
+.widget_archive li a,
+.widget_categories li a,
+.widget_tag_cloud a {
+  color: var(--info-dark);
+  text-decoration: none;
+}
+.widget_recent_entries li a:hover,
+.widget_archive li a:hover,
+.widget_categories li a:hover,
+.widget_tag_cloud a:hover {
+  color: var(--info-secondary);
 }
 .post-btn {
   background-color: var(--info);
@@ -212,9 +243,15 @@ header {
   transform: translateY(0);
 }
 
+.form-group {
+  margin: 1rem, 0, 1rem, 0;
+}
 @media only screen and (min-width: 470px) {
   .lang-icon h5 {
     font-size: 1rem;
+  }
+  .animated-img {
+    width: 250px;
   }
 }
 @media only screen and (min-width: 768px) {
