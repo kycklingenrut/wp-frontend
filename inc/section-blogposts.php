@@ -33,7 +33,10 @@ if ($blogpost_blog_query->have_posts()):
         $blogpost_title = get_field('newpost-title');
         $post_date = get_the_date('l F j, Y');
 
-        $text = get_field('newpost-text');
+        // filters the excerpt
+        $text = content_excerpt(100, false, false);
+        // strips escerpt of tags to avoid broken html
+        $stripped_exc = strip_tags($text);
 
         ?>
             <article class="home-blogpost my-2">
@@ -48,7 +51,7 @@ if ($blogpost_blog_query->have_posts()):
                     </div>
                     <h3 class="card-title"><?php echo $blogpost_title; ?></h3>
                     <div class="card-text card-text-post">
-                        <?php echo content_excerpt(100); ?></div>
+                        <?php echo $stripped_exc; ?></div>
                     <div class="d-flex justify-content-end">
                         <button class="btn post-btn"><a href="<?php the_permalink();?>" class="post-nav-link">To
                                 Post</a></button>
@@ -81,5 +84,5 @@ if ($blogpost_blog_query->have_posts()):
 ?>
         <?php endif;?>
     </div>
-
+</div>
 </div>

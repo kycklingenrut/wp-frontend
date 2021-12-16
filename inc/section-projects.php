@@ -48,16 +48,3 @@ else:endif;
 ?>
     </div>
 </div>
-
-
-<!--
-<div class="card">
-                <img class="card-img-top" src="" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text"></p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted"><a href="#" class="btn post-btn">Read More</a></small>
-                </div>
-            </div> -->

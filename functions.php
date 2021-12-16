@@ -1,4 +1,6 @@
 <?php
+require get_template_directory() . '/inc/custom-comments.php';
+
 // Dynamically add Title for Pages
 function myowntheme_theme_support()
 {
@@ -18,7 +20,7 @@ function custom_field_excerpt()
         $text = str_replace(']]>', ']]>', $text);
         $text = preg_replace(array('/\s{2,}|&nbsp;/', '/[\t\n]/'), ' ', $text); // deletes extra whitespace/NBS
         $text_length = strlen($text);
-        $excerpt_length = 150; // 100 chars
+        $excerpt_length = 125; // 100 chars
         $excerpt_more = "...";
 
         $text = substr($text, 0, $excerpt_length);
@@ -114,8 +116,7 @@ function hide_wp_title_input()
     // var_dump($screen);
     if ($screen->id === 'acf-field-group') {
         return;
-    }
-    if ($screen->id === 'edit-page') {
+    } elseif ($screen->id === 'edit-page') {
         return;
     }
     ?>
@@ -303,6 +304,7 @@ function custom_sidebar()
 }
 add_action('widgets_init', 'custom_sidebar');
 
+// restrict access for pages for certain users
 function my_restrict_access()
 {
     global $pagenow;
@@ -314,7 +316,8 @@ function my_restrict_access()
 }
 add_action('admin_init', 'my_restrict_access', 0);
 
-function wpb_move_comment_field_to_bottom($fields)
+// move comment field to the bottom of the form
+function move_comment_field_to_bottom($fields)
 {
     $comment_field = $fields['comment'];
     unset($fields['comment']);
@@ -322,4 +325,4 @@ function wpb_move_comment_field_to_bottom($fields)
     return $fields;
 }
 
-add_filter('comment_form_fields', 'wpb_move_comment_field_to_bottom');
+add_filter('comment_form_fields', 'move_comment_field_to_bottom');
