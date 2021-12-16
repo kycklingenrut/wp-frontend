@@ -14,6 +14,7 @@ if ($blogpost_query->have_posts()):
     while ($blogpost_query->have_posts()):
         $blogpost_query->the_post();
 
+        // If image exists, put it in variables
         if (get_field('newpost-image') != null) {
             $image = get_field('newpost-image');
             $image_id = $image['ID'];
@@ -27,9 +28,9 @@ if ($blogpost_query->have_posts()):
         $excerpt = custom_field_excerpt();
         //Strip the excerpt of tags
         $stripped_exc = strip_tags($excerpt);
-        // var_dump($image);
-
+        // If title is too long, trim it
         $trimmed_title = mb_strimwidth(get_the_title(), 0, 29, '...');
+        // Get the post date
         $post_date = get_the_date('F j, Y');
         ?>
 

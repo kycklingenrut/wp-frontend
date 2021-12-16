@@ -4,6 +4,7 @@ get_header();
 $policy_page_title = '';
 $policy_page_id = (int) get_option('wp_page_for_privacy_policy');
 
+// If policy page exists, render the content
 if ($policy_page_id && get_post_status($policy_page_id) === 'publish') {
     $policy_page_title = get_the_title($policy_page_id);
 }

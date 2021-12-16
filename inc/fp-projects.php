@@ -4,7 +4,6 @@ $blogpost_query = new WP_Query(array('posts_per_page' => 3, 'category_name' => '
 
 <div class="container px-4 py-5 mb-1">
     <h2 class="pb-2 border-bottom">Our Projects</h2>
-
     <div>
         <div class="row row-cols-1 row-cols-lg-3 my-1 py-5">
             <?php
@@ -13,6 +12,7 @@ if ($blogpost_query->have_posts()):
     while ($blogpost_query->have_posts()):
         $blogpost_query->the_post();
 
+        // If image exists, put it in variables
         if (get_field('newpost-image') != null) {
             $image = get_field('newpost-image');
             $sm_img = $image['sizes']['thumbnail'];
@@ -34,9 +34,6 @@ if ($blogpost_query->have_posts()):
                     </div>
                 </div>
             </div>
-
-
-
             <?php
     endwhile;
 else:endif;

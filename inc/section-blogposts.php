@@ -2,7 +2,6 @@
     <?php
 //Protect against arbitrary paged values
 $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
-
 $args = array(
     'posts_per_page' => 4,
     'category_name' => 'blogposts',
@@ -10,12 +9,10 @@ $args = array(
 );
 
 $blogpost_blog_query = new WP_Query($args);
-
 ?>
     <div class="row g-5 justify-content-center">
         <div class="col-md-8">
             <?php
-
 // The Loop
 if ($blogpost_blog_query->have_posts()):
     while ($blogpost_blog_query->have_posts()):
@@ -29,23 +26,21 @@ if ($blogpost_blog_query->have_posts()):
             $image_id = "";
             $image_alt = "";
         }
-
+        // Put Post-title in variable
         $blogpost_title = get_field('newpost-title');
+        // Put Post-date in variable
         $post_date = get_the_date('l F j, Y');
 
-        // filters the excerpt
+        // Filters the excerpt
         $text = content_excerpt(100, false, false);
-        // strips escerpt of tags to avoid broken html
+        // Strips escerpt of tags to avoid broken html
         $stripped_exc = strip_tags($text);
 
         ?>
             <article class="home-blogpost my-2">
-
                 <div class="card-body d-flex flex-column">
-
                     <img class="my_class" <?php acf_responsive_image($image_id, 'full', '640px');?>
                         alt="<?php echo $image_alt; ?>" />
-
                     <div class="d-flex justify-content-end">
                         <small class="my-2 px-1 text-muted"><?php echo $post_date; ?></small>
                     </div>
@@ -59,29 +54,29 @@ if ($blogpost_blog_query->have_posts()):
                 </div>
             </article>
             <?php endwhile;?>
-
-
         </div>
+
         <div class="col col-md-4 d-flex flex-column rounded">
+            <!-- Render the widgets -->
             <?php
     the_widget('WP_Widget_Recent_Posts');
     the_widget('WP_Widget_Archives');
     the_widget('WP_Widget_Categories');
     the_widget('WP_Widget_Tag_Cloud');
-    ?>
 
-            <?php if (is_active_sidebar('blogpage-sidebar')): ?>
-            <?php custom_sidebar('blogpage-sidebar');?>
-
-
+    // If sidebar is active, output it
+    if (is_active_sidebar('blogpage-sidebar')):
+        custom_sidebar('blogpage-sidebar');?>
         </div>
+
+        <!-- Render the bootstrap navigation-function -->
         <?php
-    echo bootstrap_pagination($blogpost_blog_query);
-    ?>
+        echo bootstrap_pagination($blogpost_blog_query);
+        ?>
+
         <?php else: ?>
         <?php _e('Sorry, no posts matched your criteria.');?>
-        <?php endif;
-?>
+        <?php endif;?>
         <?php endif;?>
     </div>
 </div>

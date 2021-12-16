@@ -11,6 +11,7 @@
 
 <body>
     <header>
+        <!-- Responsive Navbar -->
         <nav class="navbar navbar-expand-md" role="navigation">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -40,8 +41,9 @@ wp_nav_menu(
 
             </div>
         </nav>
-
     </header>
+
+    <!-- Render different Titles of pages depending on which page it is -->
     <?php if (is_front_page()) {?>
     <div class="main-wrapper"><?php
 } else {?>
@@ -50,7 +52,7 @@ wp_nav_menu(
 
             <div class="container">
                 <?php
-// $our_title = get_the_title(get_option('page_for_posts', true));
+
 $projects_title = get_field('projects_title');
 
 // target the correct Post Id to get the blogpage-title

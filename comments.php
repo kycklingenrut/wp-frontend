@@ -1,4 +1,6 @@
 <?php
+
+// Comment-form arguments and html
 $comment_author = "Name";
 $comment_email = "Email";
 $comment_url = "Website";
@@ -43,6 +45,7 @@ $comments_args = array(
 );
 comment_form($comments_args);
 
+// If comments exists, run wp_list_comments with helper function
 if (have_comments()):
 
 ?>
@@ -58,9 +61,8 @@ wp_list_comments(array(
 ));
 ?>
     </ul>
-    <?php
 
-?>
+    <!-- If there are more than three comments, paginate the comments -->
     <div class="container col-6 col-md-3 col-lg-2 d-flex justify-content-center comments-pagination">
         <?php paginate_comments_links();
 ?>

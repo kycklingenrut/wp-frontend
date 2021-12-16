@@ -1,11 +1,6 @@
-<?php
-get_header();
+<?php get_header();?>
 
-?>
-
+<!-- Get section-blogposts -->
 <?php get_template_part('inc/section', 'blogposts');?>
 
-<?php
-
-get_footer();
-?>
+<?php get_footer();?>

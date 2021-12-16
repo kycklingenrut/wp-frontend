@@ -1,3 +1,4 @@
+<!-- Header / Jumbotron for frontpage -->
 <div class="p-5 mb-4 fp-header">
     <div class="container-fluid py-5 animated-div">
         <div class="animated-text-container d-flex flex-column align-items-end">

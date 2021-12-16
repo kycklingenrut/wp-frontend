@@ -9,11 +9,6 @@
 if (have_posts()):
     while (have_posts()):
         the_post();
-
-        if (get_field('newpost-text') != null) {
-            $text = get_field('newpost-text');
-        }
-
         ?>
             <article class="my-5 home-blogpost rounded">
                 <div class="card-body d-flex flex-column">

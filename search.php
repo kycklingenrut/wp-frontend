@@ -1,10 +1,11 @@
 <?php
 get_header();
 ?>
-
+<!-- Get section-search -->
 <?php if (have_posts()): get_template_part('inc/section', 'search');
 
 else: ?>
+<!-- No posts available -->
 <div class="container d-flex flex-column align-items-center text-center py-2 my-3">
     <h3>No Posts matched your search, try searching for something else</h3>
     <button class="btn post-btn" id="go-back"><i class="fas fa-angle-double-left"></i> Go Back</button>

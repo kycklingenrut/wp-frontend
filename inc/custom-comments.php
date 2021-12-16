@@ -1,4 +1,5 @@
 <?php
+// If custom_comments is called, output custom html for comments
 if (!function_exists('custom_comments')):
     function custom_comments($comment, $args, $depth)
 {

@@ -1,5 +1,7 @@
 <?php
 get_header();?>
+
+<!-- Custom 404-page -->
 <div class="container d-flex flex-column align-items-center py-2 my-3">
     <h1>Page not found</h1>
     <button class="btn post-btn" id="go-back"><i class="fas fa-angle-double-left"></i> Go Back</button>

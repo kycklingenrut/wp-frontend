@@ -1,4 +1,5 @@
 <?php
+// Require help-function for comments.php
 require get_template_directory() . '/inc/custom-comments.php';
 
 // Dynamically add Title for Pages
@@ -148,7 +149,7 @@ function upd_cust_post_title($post_id)
     wp_update_post($post);
 }
 
-// add default image setting to ACF image fields
+// Add default image setting to ACF image fields,
 // let's you select a defualt image
 add_action('acf/render_field_settings/type=image', 'add_default_value_to_image_field');
 function add_default_value_to_image_field($field)
@@ -177,7 +178,7 @@ function register_navwalker()
 }
 add_action('after_setup_theme', 'register_navwalker');
 
-// add filter for Bootstrap5 NavWalker
+// Add filter for Bootstrap5 NavWalker
 add_filter('nav_menu_link_attributes', 'prefix_bs5_dropdown_data_attribute', 20, 3);
 /**
  * Use namespaced data attribute for Bootstrap's dropdown toggles.
@@ -198,7 +199,7 @@ function prefix_bs5_dropdown_data_attribute($atts, $item, $args)
     return $atts;
 }
 
-// adds custom image-sizes
+// Adds custom image-sizes
 function add_image_sizes()
 {
 
@@ -208,7 +209,7 @@ function add_image_sizes()
 }
 add_action('after_setup_theme', 'add_image_sizes');
 
-// acf img srcset
+// Acf img srcset
 function acf_responsive_image($image_id, $image_size, $max_width)
 {
 
@@ -304,7 +305,7 @@ function custom_sidebar()
 }
 add_action('widgets_init', 'custom_sidebar');
 
-// restrict access for pages for certain users
+// Restrict access for pages for certain users
 function my_restrict_access()
 {
     global $pagenow;
@@ -316,7 +317,7 @@ function my_restrict_access()
 }
 add_action('admin_init', 'my_restrict_access', 0);
 
-// move comment field to the bottom of the form
+// Move comment field to the bottom of the form
 function move_comment_field_to_bottom($fields)
 {
     $comment_field = $fields['comment'];

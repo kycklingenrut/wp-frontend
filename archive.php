@@ -1,9 +1,9 @@
-<?php 
-get_header(); ?>
+<?php
+get_header();?>
 
-<?php get_template_part('inc/section', 'content'); ?>
+<!-- Get section-content -->
+<?php get_template_part('inc/section', 'content');?>
 
-
-<?php 
+<?php
 get_footer();
 ?>

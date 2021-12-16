@@ -4,13 +4,13 @@ $blogpost_query = new WP_Query(array('posts_per_page' => -1, 'category_name' => 
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 justify-content-center">
 
-
         <?php
 // The Loop
 if ($blogpost_query->have_posts()):
     while ($blogpost_query->have_posts()):
         $blogpost_query->the_post();
 
+        // If image exists, put in variables
         if (get_field('newpost-image') != null) {
             $image = get_field('newpost-image');
             $sm_img = $image['sizes']['thumbnail'];
@@ -20,13 +20,9 @@ if ($blogpost_query->have_posts()):
             $image_id = "";
             $image_alt = "";
         }
-
-//Grab the excerpt
-        $excerpt = custom_field_excerpt();
-//Strip the excerpt of tags
-        $stripped_exc = strip_tags($excerpt);
-
+        // Trim the title
         $trimmed_title = mb_strimwidth(get_the_title(), 0, 25, '...');
+
         ?>
 
         <div class="col my-3">

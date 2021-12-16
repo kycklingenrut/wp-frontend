@@ -1,4 +1,4 @@
-// calls custom functions after page- and content-load
+// Calls custom functions after page- and content-load
 window.onload = function () {
   let btn = document.querySelector(".post-btn")
   let single_btn = document.getElementById("go-back")
@@ -26,7 +26,7 @@ window.onload = function () {
   checkAllBtns()
   checkSingleBtn()
 
-  // gets window size of client and runs custom scripts
+  // Gets window size of client and runs custom scripts
   // depending on client-width
   function getWindowSize() {
     let w = document.documentElement.clientWidth
@@ -63,7 +63,7 @@ window.onload = function () {
 let scrollToTopBtn = document.querySelector(".scrollToTopBtn")
 let rootElement = document.documentElement
 
-// sets a scroll-button for going up to the menu
+// Sets a scroll-button for going up to the menu
 function handleScroll() {
   let scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
   if (rootElement.scrollTop / scrollTotal > 0.5) {
@@ -74,7 +74,7 @@ function handleScroll() {
     scrollToTopBtn.classList.remove("showBtn")
   }
 }
-
+// Function for scrolling to top
 function scrollToTop() {
   // Scroll to top logic
   rootElement.scrollTo({
@@ -87,7 +87,7 @@ function scrollToTop() {
 scrollToTopBtn.addEventListener("click", scrollToTop)
 document.addEventListener("scroll", handleScroll)
 
-// resets scroll to top when refreshing page
+// Resets scroll to top when refreshing page
 if (history.scrollRestoration) {
   history.scrollRestoration = "manual"
 } else {

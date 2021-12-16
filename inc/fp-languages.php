@@ -1,3 +1,6 @@
+<?php
+// This php-tag is just to avoid Hacklang-tag in Github
+?>
 <div class="p-5 mb-4 fp-lang-container rounded-3 ">
     <div class="container-fluid py-5 justify-content-center">
         <div class="tag-line-lang">
